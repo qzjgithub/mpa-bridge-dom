@@ -25,6 +25,8 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "react": "^16.4.2"
+    "react": "^16.4.2",
+    "requirejs-plugins": "^1.0.2",
+    "requirejs-text": "^2.0.15"
   }
 }
