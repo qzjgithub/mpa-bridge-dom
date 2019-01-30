@@ -76,7 +76,7 @@ var Bridge = function (_Component) {
                 return './' + mn + '/' + v;
             });
             mn && window['require'](['./' + mn + '/index'].concat(_toConsumableArray(extras)), function (enter) {
-                enter({ pathname: pathname, id: id }, { store: store, reducers: reducers, actions: actions });
+                enter({ pathname: pathname, id: id, mn: mn }, { store: store, reducers: reducers, actions: actions }, sessionName);
             });
         }
     }, {

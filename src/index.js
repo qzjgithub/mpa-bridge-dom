@@ -36,7 +36,7 @@ class Bridge extends Component{
         extra = extra || [];
         let extras = extra.map((v)=>`./${mn}/${v}`);
         mn && window['require']([`./${mn}/index`,...extras],(enter) => {
-            enter({ pathname, id }, { store, reducers, actions });
+            enter({ pathname, id ,mn}, { store, reducers, actions },sessionName);
         });
     }
 
