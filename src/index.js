@@ -21,9 +21,20 @@ class Bridge extends Component{
         });
     }
 
+    componentWillReceiveProps(nextProps){
+        if(nextProps.mn !== this.props.mn){
+            this.getFile(nextProps);
+        }
+    }
+
     componentDidMount(){
-        let { sessionName, mn, pathname, id, extra } = this.props;
-        let { store, reducers, actions } = this.props;
+        this.getFile(this.props);
+    }
+
+    getFile(props){
+        console.log("加载文件");
+        let { sessionName, mn, pathname, id, extra } = props;
+        let { store, reducers, actions } = props;
         if(mn){
             sessionStorage.setItem(sessionName,JSON.stringify({ sessionName, mn, pathname,extra }));
         }else{

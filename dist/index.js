@@ -49,18 +49,29 @@ var Bridge = function (_Component) {
     }
 
     _createClass(Bridge, [{
+        key: 'componentWillReceiveProps',
+        value: function componentWillReceiveProps(nextProps) {
+            if (nextProps.mn !== this.props.mn) {
+                this.getFile(nextProps);
+            }
+        }
+    }, {
         key: 'componentDidMount',
         value: function componentDidMount() {
-            var _props = this.props,
-                sessionName = _props.sessionName,
-                mn = _props.mn,
-                pathname = _props.pathname,
-                id = _props.id,
-                extra = _props.extra;
-            var _props2 = this.props,
-                store = _props2.store,
-                reducers = _props2.reducers,
-                actions = _props2.actions;
+            this.getFile(this.props);
+        }
+    }, {
+        key: 'getFile',
+        value: function getFile(props) {
+            console.log("加载文件");
+            var sessionName = props.sessionName,
+                mn = props.mn,
+                pathname = props.pathname,
+                id = props.id,
+                extra = props.extra;
+            var store = props.store,
+                reducers = props.reducers,
+                actions = props.actions;
 
             if (mn) {
                 sessionStorage.setItem(sessionName, JSON.stringify({ sessionName: sessionName, mn: mn, pathname: pathname, extra: extra }));
