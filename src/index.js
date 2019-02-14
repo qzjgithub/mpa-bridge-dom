@@ -32,7 +32,6 @@ class Bridge extends Component{
     }
 
     getFile(props){
-        console.log("加载文件");
         let { sessionName, mn, pathname, id, extra } = props;
         let { store, reducers, actions } = props;
         if(mn){
