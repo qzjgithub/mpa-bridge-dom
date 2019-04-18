@@ -10,7 +10,7 @@ class Bridge extends Component{
     }
 
     componentDidMount(){
-        let { sessionName, mn, pathname, id } = this.props;
+        let { sessionName, mn, pathname, id, onLoad } = this.props;
         let { store, reducers, actions } = this.props;
         if(mn){
             sessionStorage.setItem(sessionName,JSON.stringify({ sessionName, mn, pathname }));
@@ -22,6 +22,9 @@ class Bridge extends Component{
         id = id || 'app';
         mn && window['require']([`./${mn}/index`],(enter) => {
             enter({ pathname, id }, { store, reducers, actions });
+            if(onLoad){
+                onLoad();
+            }
         });
     }
 

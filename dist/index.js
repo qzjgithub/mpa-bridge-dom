@@ -41,7 +41,8 @@ var Bridge = function (_Component) {
                 sessionName = _props.sessionName,
                 mn = _props.mn,
                 pathname = _props.pathname,
-                id = _props.id;
+                id = _props.id,
+                onLoad = _props.onLoad;
             var _props2 = this.props,
                 store = _props2.store,
                 reducers = _props2.reducers,
@@ -57,6 +58,9 @@ var Bridge = function (_Component) {
             id = id || 'app';
             mn && window['require'](['./' + mn + '/index'], function (enter) {
                 enter({ pathname: pathname, id: id }, { store: store, reducers: reducers, actions: actions });
+                if (onLoad) {
+                    onLoad();
+                }
             });
         }
     }, {
