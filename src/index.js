@@ -33,7 +33,7 @@ class Bridge extends Component{
 
     getFile(props){
         let { sessionName, mn, pathname, id, extra, onLoad } = props;
-        let { store, reducers, actions } = props;
+        let { store, reducers, actions, history } = props;
         if(mn){
             sessionStorage.setItem(sessionName,JSON.stringify({ sessionName, mn, pathname,extra }));
         }else{
@@ -46,7 +46,7 @@ class Bridge extends Component{
         extra = extra || [];
         let extras = extra.map((v)=>`./${mn}/${v}`);
         mn && window['require']([`./${mn}/index`,...extras],(enter) => {
-            enter({ pathname, id ,mn}, { store, reducers, actions },sessionName);
+            enter({ pathname, id ,mn}, { store, reducers, actions, history },sessionName);
             if(onLoad && (typeof onLoad === 'function')){
                 onLoad();
             }

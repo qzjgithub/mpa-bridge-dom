@@ -71,7 +71,8 @@ var Bridge = function (_Component) {
                 onLoad = props.onLoad;
             var store = props.store,
                 reducers = props.reducers,
-                actions = props.actions;
+                actions = props.actions,
+                history = props.history;
 
             if (mn) {
                 sessionStorage.setItem(sessionName, JSON.stringify({ sessionName: sessionName, mn: mn, pathname: pathname, extra: extra }));
@@ -87,7 +88,7 @@ var Bridge = function (_Component) {
                 return './' + mn + '/' + v;
             });
             mn && window['require'](['./' + mn + '/index'].concat(_toConsumableArray(extras)), function (enter) {
-                enter({ pathname: pathname, id: id, mn: mn }, { store: store, reducers: reducers, actions: actions }, sessionName);
+                enter({ pathname: pathname, id: id, mn: mn }, { store: store, reducers: reducers, actions: actions, history: history }, sessionName);
                 if (onLoad && typeof onLoad === 'function') {
                     onLoad();
                 }
