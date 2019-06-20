@@ -85,9 +85,9 @@ var Bridge = function (_Component) {
             id = id || 'app';
             extra = extra || [];
             var extras = extra.map(function (v) {
-                return './' + mn + '/' + v;
+                return '/' + mn + '/' + v + '.js';
             });
-            mn && window['require'](['./' + mn + '/index'].concat(_toConsumableArray(extras)), function (enter) {
+            mn && window['require'](['/' + mn + '/index.js'].concat(_toConsumableArray(extras)), function (enter) {
                 enter({ pathname: pathname, id: id, mn: mn }, { store: store, reducers: reducers, actions: actions, history: history }, sessionName);
                 if (onLoad && typeof onLoad === 'function') {
                     onLoad();

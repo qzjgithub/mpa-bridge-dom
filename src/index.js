@@ -44,8 +44,8 @@ class Bridge extends Component{
         }
         id = id || 'app';
         extra = extra || [];
-        let extras = extra.map((v)=>`./${mn}/${v}`);
-        mn && window['require']([`./${mn}/index`,...extras],(enter) => {
+        let extras = extra.map((v)=>`/${mn}/${v}.js`);
+        mn && window['require']([`/${mn}/index.js`,...extras],(enter) => {
             enter({ pathname, id ,mn}, { store, reducers, actions, history },sessionName);
             if(onLoad && (typeof onLoad === 'function')){
                 onLoad();
