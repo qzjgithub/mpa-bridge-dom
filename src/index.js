@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import '../lib/require';
+if (!window['require']) {
+    require('../lib/require');
+}
 
 class Bridge extends Component{
     constructor(props, context) {
@@ -45,6 +47,7 @@ class Bridge extends Component{
         id = id || 'app';
         extra = extra || [];
         let extras = extra.map((v)=>`/${mn}/${v}.js`);
+        console.log(mn, extras);
         mn && window['require']([`/${mn}/index.js`,...extras],(enter) => {
             enter({ pathname, id ,mn}, { store, reducers, actions, history },sessionName);
             if(onLoad && (typeof onLoad === 'function')){
